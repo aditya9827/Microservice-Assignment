@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: user-service
+  name: user-service
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - env:
+        - name: RDS_DB_NAME
+#          value: todos
+          valueFrom:
+            configMapKeyRef:
+              key: RDS_DB_NAME
+              name: user-service-config
+        - name: RDS_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: RDS_HOSTNAME
+              name: user-service-config
+        - name: RDS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: RDS_PASSWORD
+              name: user-service-secrets
+        - name: RDS_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: RDS_PORT
+              name: user-service-config
+        - name: RDS_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: RDS_USERNAME
+              name: user-service-config
+        image: aditya9827/test-repo-k8s:user-service.0.0.3
+        name: user-service
+        ports:
+        - containerPort: 8082
+      restartPolicy: Always
