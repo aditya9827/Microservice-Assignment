@@ -39,7 +39,7 @@ spec:
             configMapKeyRef:
               key: RDS_USERNAME
               name: user-service-config
-        image: aditya9827/test-repo-k8s:user-service.0.0.3
+        image: aditya9827/test-repo-k8s:user-service.0.0.6
         name: user-service
         ports:
         - containerPort: 8082
