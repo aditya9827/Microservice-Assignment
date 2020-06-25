@@ -22,7 +22,7 @@ spec:
         app: aggregator-service
     spec:
       containers:
-      - image: aditya9827/test-repo-k8s:aggregator-service.0.0.2 #CHANGE
+      - image: aditya9827/test-repo-k8s:aggregator-service.0.0.5 #CHANGE
         imagePullPolicy: IfNotPresent
         name: aggregator-service
         env:
